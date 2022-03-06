@@ -5,7 +5,7 @@ type logInInputs_ = {
   password: string;
 };
 
-const initialState: any = { name: '', user: [], group:[], task:[], group_tasks:{}, user_tasks:{} };
+const initialState: any = { name: '', user: [], group:[], task:[], group_tasks:[], user_tasks:[] };
 
 const logInInputs: logInInputs_ = {
   email: "mmoiz.aalnoor@gmail.com",
@@ -45,10 +45,10 @@ export const appStore = createSlice({
     return state
   
     },  
-      assignTaskForUser: (state, action) => {
+    assignTaskForUser: (state, action) => {
       console.log(action.payload)
-    state.user_tasks = action.payload
-    return state
+    return[...state.user_tasks, {...action.payload}]
+  
   
     },
     logout: (state) => {
