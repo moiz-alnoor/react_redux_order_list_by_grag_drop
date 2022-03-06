@@ -41,13 +41,14 @@ export const appStore = createSlice({
     },
     assignTaskForGroup: (state, action) => {
       console.log(action.payload)
-    state.group_tasks = action.payload
+    state.group_tasks.push(action.payload)
     return state
   
     },  
     assignTaskForUser: (state, action) => {
       console.log(action.payload)
-    return[...state.user_tasks, {...action.payload}]
+      state.user_tasks.push(action.payload)
+      return state
   
   
     },
