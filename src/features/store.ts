@@ -53,7 +53,7 @@ export const appStore = createSlice({
   
     },
     logout: (state) => {
-      localStorage.clear();
+      window.location.replace("/")
     },
   },
 });
