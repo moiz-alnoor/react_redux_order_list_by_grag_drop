@@ -35,7 +35,7 @@ export default function AssignTaskUser() {
 
     dispatch(assignTaskForUser(data));
     if(data.group !== ''){
-      toast("tasks has beed assigned to the user")
+      toast.success("tasks has beed assigned to the user")
     }
   };
 

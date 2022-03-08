@@ -32,7 +32,7 @@ export default function AssignTaskGroup() {
 
     dispatch(assignTaskForGroup(data));
     if(data.group !== ''){
-      toast("tasks has beed assigned to the group")
+      toast.success("tasks has beed assigned to the group")
     }
 
   };
