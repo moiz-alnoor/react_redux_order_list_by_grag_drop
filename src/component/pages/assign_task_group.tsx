@@ -7,6 +7,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { assignTaskForGroup } from "../../features/store";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Inputs = {
   tasks: [];
@@ -29,10 +31,15 @@ export default function AssignTaskGroup() {
     console.log(data);
 
     dispatch(assignTaskForGroup(data));
+    if(data.group !== ''){
+      toast("tasks has beed assigned to the group")
+    }
+
   };
 
   return (
     <>
+      <ToastContainer />
       <Header />
       <div className="bg-yellow-200 h-screen">
         <div className="grid grid-cols-12">
