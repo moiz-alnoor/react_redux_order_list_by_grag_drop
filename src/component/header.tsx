@@ -20,7 +20,7 @@ export default function Header() {
           </div>
           <div className="col-span-6  flex justify-end">
             
-             <span className="m-1 text-sm font-medium tracking-wider"> <AiOutlineUser /> </span>{user}
+             <span className="m-1 text-sm font-medium tracking-wider"> <AiOutlineUser /> </span>{user} user name
          
           </div>
         </div>

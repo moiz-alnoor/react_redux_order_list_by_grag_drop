@@ -4,7 +4,8 @@ import jwt_decode from "jwt-decode";
 import AuthLogo from "../../file/auth_logo.png";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/store";
-
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // firebase login and then rediredct to the dashboard
 type logInInputs_ = {
@@ -28,6 +29,7 @@ export default function LogIn() {
 
   return (
     <>
+       <ToastContainer />
       <div className="flex justify-center mt-24">
         <img src={AuthLogo} width="400" alt="log logo" height="300" />
       </div>

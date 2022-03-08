@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type logInInputs_ = {
   email: string;
@@ -24,6 +26,8 @@ export const appStore = createSlice({
         state.name = logInInputs.email
         localStorage.setItem("isLog", "true");
         window.location.replace("/user")
+      } else{
+        toast.error("password or email not correct")
       }
     },
 
