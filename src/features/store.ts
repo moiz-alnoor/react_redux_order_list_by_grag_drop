@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 type logInInputs_ = {
   email: string;
@@ -10,7 +9,7 @@ type logInInputs_ = {
 const initialState: any = { name: '', user: [], group:[], task:[], group_tasks:[], user_tasks:[] };
 
 const logInInputs: logInInputs_ = {
-  email: "mmoiz.aalnoor@gmail.com",
+  email: "m@m.com",
   password: "123",
 };
 
@@ -51,7 +50,10 @@ export const appStore = createSlice({
     },  
     assignTaskForUser: (state, action) => {
       console.log(action.payload)
-      state.user_tasks.push(action.payload)
+      action.payload.tasks.forEach((element:any) => {
+        state.user_tasks.push({task:element, id:Math.floor(Math.random() * 100)})
+      });
+
       return state
   
   
