@@ -7,7 +7,8 @@ type logInInputs_ = {
 };
 
 const initialState: any = {
-  admin: false,
+  isAdmin: false,
+  isUser: false,
   name: "",
   user: [],
   group: [],
@@ -16,24 +17,25 @@ const initialState: any = {
   user_tasks: [],
 };
 
-const AdminLogInInputs: logInInputs_ = { email: "m@m.com", password: "123" };
-const UserLogInInputs: logInInputs_ = { email: "a@a.com", password: "123" };
+const AdminLogInInputs: logInInputs_ = { email: "a@a.com", password: "123" };
+const UserLogInInputs: logInInputs_ = { email: "u@u.com", password: "123" };
 
 export const appStore = createSlice({
   name: "appStore",
   initialState: initialState,
   reducers: {
     login: (state, action) => {
-      if (
-        action.payload.email == AdminLogInInputs.email &&
-        action.payload.password == AdminLogInInputs.password
-      ) {
-        state.admin = true;
-        state.name = AdminLogInInputs.email;
+      if ( action.payload.email == AdminLogInInputs.email && action.payload.password == AdminLogInInputs.password ) {
+        state.isAdmin = true;
         localStorage.setItem("isLog", "true");
-        window.location.replace("/user");
-        return state;
-      } else {
+        localStorage.setItem("isAdmin", "true");
+        window.location.replace("/view_task");
+      } else if ( action.payload.email == UserLogInInputs.email && action.payload.password == UserLogInInputs.password ){
+        state.isUser = true;
+        localStorage.setItem("isLog", "true");
+        localStorage.setItem("isUser", "true");
+        window.location.replace("/view_task");
+      } else{
         toast.error("password or email not correct");
       }
     },
@@ -78,6 +80,7 @@ export const appStore = createSlice({
       });
     },
     logout: (state) => {
+      localStorage.clear()
       window.location.replace("/");
     },
   },
