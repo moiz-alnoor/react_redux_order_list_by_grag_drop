@@ -1,17 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 type logInInputs_ = {
   email: string;
   password: string;
 };
 
-const initialState: any = { name: '', user: [], group:[], task:[], group_tasks:[], user_tasks:[] };
-
-const logInInputs: logInInputs_ = {
-  email: "m@m.com",
-  password: "123",
+const initialState: any = {
+  admin: false,
+  name: "",
+  user: [],
+  group: [],
+  task: [],
+  group_tasks: [],
+  user_tasks: [],
 };
+
+const AdminLogInInputs: logInInputs_ = { email: "m@m.com", password: "123" };
+const UserLogInInputs: logInInputs_ = { email: "a@a.com", password: "123" };
 
 export const appStore = createSlice({
   name: "appStore",
@@ -19,14 +25,16 @@ export const appStore = createSlice({
   reducers: {
     login: (state, action) => {
       if (
-        action.payload.email == logInInputs.email &&
-        action.payload.password == logInInputs.password
+        action.payload.email == AdminLogInInputs.email &&
+        action.payload.password == AdminLogInInputs.password
       ) {
-        state.name = logInInputs.email
+        state.admin = true;
+        state.name = AdminLogInInputs.email;
         localStorage.setItem("isLog", "true");
-        window.location.replace("/user")
-      } else{
-        toast.error("password or email not correct")
+        window.location.replace("/user");
+        return state;
+      } else {
+        toast.error("password or email not correct");
       }
     },
 
@@ -36,34 +44,54 @@ export const appStore = createSlice({
     },
     addGroup: (state, action) => {
       state.group.push(action.payload);
-     return state;
+      return state;
     },
     addTask: (state, action) => {
       state.task.push(action.payload);
-     return state;
+      return state;
     },
     assignTaskForGroup: (state, action) => {
-      console.log(action.payload)
-    state.group_tasks.push(action.payload)
-    return state
-  
-    },  
+      console.log(action.payload);
+      state.group_tasks.push(action.payload);
+      return state;
+    },
     assignTaskForUser: (state, action) => {
-      console.log(action.payload)
-      action.payload.tasks.forEach((element:any) => {
-        state.user_tasks.push({task:element, id:Math.floor(Math.random() * 100)})
+      action.payload.tasks.forEach((element: any) => {
+        state.user_tasks.push({
+          status: false,
+          task: element,
+          id: Math.floor(Math.random() * 100),
+        });
       });
 
-      return state
-  
-  
+      toast.success("tasks has beed assigned to the user");
+
+      return state;
+    },
+    handleTask: (state, action) => {
+      console.log(action.payload.index);
+
+      state.user_tasks.forEach(function (obj: any) {
+        if (obj.id === action.payload.index) {
+          obj.status = action.payload.value;
+        }
+      });
     },
     logout: (state) => {
-      window.location.replace("/")
+      window.location.replace("/");
     },
   },
 });
 
-export const { login, addUser,addTask,assignTaskForUser, assignTaskForGroup,  addGroup, logout } = appStore.actions;
+export const {
+  login,
+  addUser,
+  handleTask,
+  addTask,
+  assignTaskForUser,
+  assignTaskForGroup,
+  addGroup,
+  logout,
+} = appStore.actions;
 
 export default appStore.reducer;

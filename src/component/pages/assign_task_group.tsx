@@ -63,6 +63,7 @@ export default function AssignTaskGroup() {
                     >
                       <label className="inline-flex items-center">
                         <input
+                        required
                           type="checkbox"
                           className="form-radio"
                           {...register("tasks")}
@@ -75,7 +76,7 @@ export default function AssignTaskGroup() {
 
                   <p>Select Group</p>
                   <div className="mb-3 xl:w-96">
-                    <select
+                    <select 
                       {...register("group")}
                       className="form-select appearance-none
       block
@@ -93,6 +94,7 @@ export default function AssignTaskGroup() {
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       aria-label="Default select example"
+                      required
                     >
                       {group.map((group: string, index: number) => (
                         <>

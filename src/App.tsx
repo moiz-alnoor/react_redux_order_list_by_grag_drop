@@ -7,6 +7,7 @@ import AssignTaskGroup from './component/pages/assign_task_group'
 import AssignTaskUser from './component/pages/assign_task_user'
 import ViewTasks from './component/pages/view_tasks'
 import HandleTasks from './component/pages/handle_task'
+import OrderTasks from './component/pages/order_task'
 import ProtectedRoute from './component/auth/protected_route'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route    path="/assign_task_user" element={<AssignTaskUser/>} />
           <Route    path="/view_task" element={<ViewTasks/>} />
           <Route    path="/handle_task" element={<HandleTasks/>} />
+          <Route    path="/order_task" element={<OrderTasks/>} />
         </Route>  
   </Routes>
     </>

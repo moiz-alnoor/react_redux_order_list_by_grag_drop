@@ -33,9 +33,10 @@ export default function AssignTaskUser() {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
 
-    dispatch(assignTaskForUser(data));
-    if(data.group !== ''){
-      toast.success("tasks has beed assigned to the user")
+  
+    console.log(data)
+    if(data.tasks){
+      dispatch(assignTaskForUser(data));
     }
   };
 
@@ -51,7 +52,7 @@ export default function AssignTaskUser() {
 
           <div className="col-span-8  p-5">
             <div className="py-7 px-7 text-xs font-medium tracking-wider text-left flex items-center">
-              <AiOutlineNodeCollapse size={25} /> Assign Task for Group
+              <AiOutlineNodeCollapse size={25} /> Assign Task for User
             </div>
 
             <div className="py-7 px-7  flex justify-start">
@@ -77,6 +78,7 @@ export default function AssignTaskUser() {
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       aria-label="Default select example"
+                      required
                     >
                       {user.map((user: string, index: number) => (
                         <>
@@ -104,7 +106,7 @@ export default function AssignTaskUser() {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                      aria-label="Default select example"
+                      aria-label="Default select example" required
                     >
                       {group.map((group: string, index: number) => (
                         <>
@@ -121,6 +123,7 @@ export default function AssignTaskUser() {
                     >
                       <label className="inline-flex items-center">
                         <input
+                     
                           type="checkbox"
                           className="form-radio"
                           {...register("tasks")}
@@ -136,7 +139,7 @@ export default function AssignTaskUser() {
                     type="submit"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
-                    Assign Task for Group
+                    Assign Task for User
                   </button>
                   </div>
 
