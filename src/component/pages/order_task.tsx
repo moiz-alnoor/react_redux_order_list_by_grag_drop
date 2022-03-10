@@ -1,20 +1,22 @@
 import React, { FC } from "react";
-import Nestable from "react-nestable";
-import "react-nestable/dist/styles/index.css";
+import Nestable from 'react-nestable';
+import 'react-nestable/dist/styles/index.css';
 import Header from "../header";
 import MenuBar from "../menu_bar";
 import Footer from "../footer";
 import { AiOutlineRedo } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
+
 export default function ViewTasks() {
+ 
   const userState = useSelector((state: any) => state.user);
   const tasks = userState.user_tasks;
-  console.log(tasks);
-  //console.log(items)
-  const renderItem = ({ item }: any) => item.task;
-  console.log(tasks);
-  console.log(renderItem);
+  console.log(tasks)
+  const renderItem = ({item}:any) => item.task;
+
+  
+  
 
   return (
     <>
@@ -32,12 +34,12 @@ export default function ViewTasks() {
 
             <div className="py-7 px-7  flex justify-start">
               <div className="w-96">
-                <Nestable
-                  className=" border-1 bg-white p-3 border-gray-300 text-gray-500 "
-                  items={tasks}
-                  renderItem={renderItem}
-                />
-              </div>
+              <Nestable className=" border-1 bg-white p-3 border-gray-300 text-gray-500 "
+    items={tasks}
+    renderItem={renderItem} />
+    
+
+               </div>
             </div>
           </div>
         </div>

@@ -75,7 +75,7 @@ export default function HandleTasks(){
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Status
+                        Update Status
                       </th>
                     </tr>
                   </thead>
@@ -116,7 +116,7 @@ export default function HandleTasks(){
                       aria-label="Default select example"
                       required
                     >
-                         <option value=""></option>
+                         <option value="">Select Status</option>
                           <option value="true">complete</option>
                             <option value="false"> in progress</option>
     
