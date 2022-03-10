@@ -4,9 +4,8 @@ import { useSelector } from "react-redux"
 
 
 export default function Header() {
-  // get the user name from the redux store 
-   const user = useSelector((state:any) => state.name)
-   console.log(user)
+  const user = localStorage.getItem('user')
+
   
   return (
     <>
@@ -20,7 +19,7 @@ export default function Header() {
           </div>
           <div className="col-span-6  flex justify-end">
             
-             <span className="m-1 text-sm font-medium tracking-wider"> <AiOutlineUser /> </span>{user} user name
+             <span className="m-1 text-sm font-medium tracking-wider"> <AiOutlineUser /> </span>{user} 
          
           </div>
         </div>

@@ -29,12 +29,14 @@ export const appStore = createSlice({
         state.isAdmin = true;
         localStorage.setItem("isLog", "true");
         localStorage.setItem("isAdmin", "true");
-        window.location.replace("/view_task");
+        localStorage.setItem("user", AdminLogInInputs.email );
+       // window.location.replace("/view_task");
       } else if ( action.payload.email == UserLogInInputs.email && action.payload.password == UserLogInInputs.password ){
         state.isUser = true;
         localStorage.setItem("isLog", "true");
         localStorage.setItem("isUser", "true");
-        window.location.replace("/view_task");
+        localStorage.setItem("user", UserLogInInputs.email );
+       // window.location.replace("/view_task");
       } else{
         toast.error("password or email not correct");
       }

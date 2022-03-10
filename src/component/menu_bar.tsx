@@ -1,20 +1,18 @@
 import { AiOutlineUsergroupAdd, AiOutlineUser, AiOutlineUnorderedList, AiOutlineLogout,AiOutlineNodeCollapse,AiOutlineCheck,AiOutlineRedo,AiOutlineRollback} from "react-icons/ai"
 import { Link } from "react-router-dom"
-import { logout } from "../features/store"
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux";
+import {
+  useNavigate,
+} from "react-router-dom";
 export default function MenuBar() {
-   const dispatch = useDispatch()
+  const navigate = useNavigate();
    
-   const taskState = useSelector((state: any) => state);
    const isUser = localStorage.getItem('isUser')
    const isAdmin = localStorage.getItem('isAdmin')
    console.log(isUser)
    console.log(isAdmin )
    const sinOut = () => {
-    dispatch(logout())
-    // redirct out
-    window.location.href = "/"
+    localStorage.clear()
+    navigate("/");
   } 
   return (
     <>

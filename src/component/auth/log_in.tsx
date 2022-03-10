@@ -1,11 +1,14 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import jwt_decode from "jwt-decode";
 import AuthLogo from "../../file/auth_logo.png";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/store";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {
+  useNavigate,
+} from "react-router-dom";
+
 
 // firebase login and then rediredct to the dashboard
 type logInInputs_ = {
@@ -14,6 +17,7 @@ type logInInputs_ = {
 };
 
 export default function LogIn() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register,
@@ -22,8 +26,16 @@ export default function LogIn() {
     formState: { errors },
   } = useForm<logInInputs_>();
   const onSubmit: SubmitHandler<logInInputs_> = (data) => {
-    console.log(data);
-    dispatch(login(data));
+     dispatch(login(data));
+     const isUser = localStorage.getItem('isUser')
+     const isAdmin = localStorage.getItem('isAdmin')
+
+     if(isAdmin){
+      navigate("/view_task");
+     } else if(isUser){
+      navigate("/view_task");
+     }
+   
   };
 
 
